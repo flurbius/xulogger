@@ -2,6 +2,7 @@ xulogger
 ========
 
 this is a **simple** and **easy** logger!
+![screenshot](https://raw.githubusercontent.com/xerysherry/xulogger/master/screenshot/screenshot.png)
 
 How to install?
 ---------------
