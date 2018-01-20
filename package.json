@@ -2,9 +2,9 @@
   "name": "xulogger",
   "version": "1.0.0",
   "description": "Very Simple and Strong Logger",
-  "main": "./src/logger.ts",
+  "main": "dist/logger.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [
     "logger",
@@ -13,13 +13,22 @@
     "color",
     "colorful"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xerysherry/xulogger"
+  },
+  "bugs": {
+    "url": "https://github.com/xerysherry/xulogger/issues"
+  },
+  "homepage": "https://github.com/xerysherry/xulogger#readme",
   "author": "xerysherry",
   "license": "Apache-2.0",
   "dependencies": {
     "colors.ts": "^1.0.19"
   },
   "devDependencies": {
-    "@types/node": "^9.3.0"
+    "@types/node": "^9.3.0",
+    "typescript": "^2.6.2"
   },
-  "typings": "./src/index.d.ts"
+  "typings": "src/index.d.ts"
 }
