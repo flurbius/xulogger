@@ -74,7 +74,7 @@ export class FileLog implements ILog
         }
     }
 
-    constructor(level:LogLevel, file:string, roll?:boolean);
+    constructor(level:LogLevel, file?:string, roll?:boolean);
     constructor(config:any);
     constructor(x:LogLevel|any, file?:string, roll?:boolean)
     {

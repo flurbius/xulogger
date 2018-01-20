@@ -36,9 +36,15 @@ declare namespace xulogger
         Log(level:Level, message:string): void
     }
     export class ConsoleLog {
+        constructor(level:Level);
+        constructor(config:any);
+        constructor(x:Level| any);
         Log(level:Level, message:string): void;
     }
     export class FileLog {
+        constructor(level:Level, file?:string, roll?:boolean);
+        constructor(config:any);
+        constructor(x:Level|any, file?:string, roll?:boolean)
         Log(level:Level, message:string): void;
     }
     export class Logger

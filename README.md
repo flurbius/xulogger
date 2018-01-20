@@ -1,6 +1,8 @@
 xulogger
 ========
 
+![npm](https://nodei.co/npm/xulogger.png)
+
 this is a **simple** and **easy** logger!
 ![screenshot](https://raw.githubusercontent.com/xerysherry/xulogger/master/screenshot/screenshot.png)
 
@@ -160,6 +162,8 @@ Thank you for use. Please Enjoy it.
 
 xulogger
 ========
+
+![npm](https://nodei.co/npm/xulogger.png)
 
 一个简单并强大的logger
 ![screenshot](https://raw.githubusercontent.com/xerysherry/xulogger/master/screenshot/screenshot.png)
