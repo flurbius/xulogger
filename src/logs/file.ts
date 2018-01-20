@@ -1,3 +1,18 @@
+/* Copyright xerysherry 2018
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import fs = require("fs");
 import path = require("path");
 import timers = require("timers");
@@ -18,14 +33,14 @@ class Today
         this.Update(date);
     }
     Check(date:Date):boolean {
-        return date.getFullYear() == this.year ||
-            date.getMonth() == this.month ||
-            date.getDay() == this.day;
+        return date.getFullYear() == this.year &&
+            date.getMonth() == this.month &&
+            date.getDate() == this.day;
     }
     Update(date:Date):void {
         this.year = date.getFullYear();
         this.month = date.getMonth();
-        this.day = date.getDay();
+        this.day = date.getDate();
     }
     year: number = 0;
     month: number = 0;
@@ -40,22 +55,21 @@ export class FileLog implements ILog
     private static RollFile(log: FileLog, date: Date): void
     {
         if (!log._today.Check(date)) {
-            if(log._fp != 0)
+            if(log._fp != null)
             {
                 fs.closeSync(log._fp);
                 log._fp = null;
             }
-            let y = date.getFullYear().toString();
-            let m = date.getMonth().toString();
+            let y = log._today.year.toString();
+            let m = (log._today.month+1).toString();
             if (m.length < 2)
                 m = '0' + m;
-            let d = date.getDay().toString();
+            let d = log._today.day.toString();
             if (d.length < 2)
                 d = '0' + d;
             fs.renameSync(log._config.file,
                 log._dirname + "/" + log._basename +
-                `_${y}_${m}_${d}` + log._ext);
-            log._fp = fs.openSync(log._config.file, "a");
+                `.${y}-${m}-${d}` + log._ext);
             log._today.Update(date);
         }
     }
@@ -81,15 +95,15 @@ export class FileLog implements ILog
         this._ext = path.extname(this._config.file);
         this._basename = path.basename(this._config.file, this._ext);
 
-        this._today = new Today();
-
         let f = this._config.file;
+        this._today = new Today();
         if(fs.existsSync(this._config.file))
         {
             let stat = fs.statSync(this._config.file);
             if(!stat.isFile())
                 return;
-            FileLog.RollFile(this, stat.mtime);
+            this._today.Update(stat.mtime);
+            FileLog.RollFile(this, new Date());
         }
         this._fp = fs.openSync(this._config.file, "a");
     }
@@ -116,7 +130,7 @@ export class FileLog implements ILog
         }
         else
         {
-            let msg = "[" + LogLevel[level] + "] " + new Date() + ": " + message + "\x0d\x0a";
+            let msg = "[" + LogLevel[level] + "] " + new Date().toLocaleString() + ": " + message + "\x0d\x0a";
             fs.write(this._fp, msg, ()=>{});
         }
     }
