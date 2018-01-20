@@ -27,10 +27,10 @@ const _default_paint =
 [
     {key:/Error/gi, colors:["red", "underline"]},
     {key:/Warning/gi, colors:"yellow"},
-    {key:/Debug/gi, colors:["blue", "bold"]},
-    {key:/Info/gi, colors:["green", "bold"]},
+    {key:/Debug/gi, colors:"blue"},
+    {key:/Info/gi, colors:"green"},
     {key:/\d{4}-\d{1,2}-\d{1,2}[ ]+\d{1,2}:\d{2}:\d{2}/g, colors:"g15"},
-    {key:/critical|fatal/gi, colors:["brightred", "underline", "bold"]},
+    {key:/critical|fatal/gi, colors:["red", "underline", "bold"]},
     {key:/https{0,1}:\/\/[^ "']*/gi, colors:["green", "underline"]}
 ]
 
