@@ -2,7 +2,6 @@
 exports.__esModule = true;
 var fs = require("fs");
 var path = require("path");
-var timers = require("timers");
 var log_1 = require("../log");
 var Today = (function () {
     function Today(date) {
@@ -81,7 +80,7 @@ var FileLog = (function () {
             return;
         if (this._config.roll) {
             var log_2 = this;
-            timers.setImmediate(function () {
+            setImmediate(function () {
                 var now = new Date();
                 FileLog.RollFile(log_2, now);
                 if (log_2._fp == null)

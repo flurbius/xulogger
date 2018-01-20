@@ -15,7 +15,6 @@
 
 import fs = require("fs");
 import path = require("path");
-import timers = require("timers");
 import { ILog, Level as LogLevel } from "../log";
 
 interface Config
@@ -118,7 +117,7 @@ export class FileLog implements ILog
         if(this._config.roll)
         {
             let log = this;
-            timers.setImmediate(()=>{
+            setImmediate(()=>{
                 let now = new Date();
                 FileLog.RollFile(log, now)
                 if(log._fp == null)
@@ -135,7 +134,6 @@ export class FileLog implements ILog
         }
     }
     
-
     private _config: Config;
 
     private _today: Today;
